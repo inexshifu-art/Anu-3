@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Someone Special</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #0b1221 0%, #070612 100%);
+      color: #f8eef7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(173,216,230,0.06), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(255,182,193,0.06), transparent 25%),
+        radial-gradient(circle at 50% 20%, rgba(147,112,219,0.03), transparent 30%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      animation: fadeUp 1s ease;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      margin-bottom: 35px;
+      animation: fadeUp 1.3s ease;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 30px;
+      border-radius: 999px;
+      text-decoration: none;
+      background: white;
+      color: black;
+      font-weight: 600;
+      transition: 0.3s ease;
+      animation: fadeUp 1.6s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    .glass-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,240,245,0.02));
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,182,193,0.08);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(6,8,20,0.6), 0 0 60px rgba(147,112,219,0.02);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .story-card {
+      background: rgba(255,255,255,0.05);
+      padding: 25px;
+      border-radius: 20px;
+      transition: 0.3s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .story-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .photo {
+      background: #0f1724;
+      color: #e8ddf2;
+      border-radius: 16px;
+      overflow: hidden;
+      transform: rotate(-2deg);
+      transition: 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .photo:nth-child(2) {
+      transform: rotate(2deg);
+    }
+
+    .photo:nth-child(3) {
+      transform: rotate(-1deg);
+    }
+
+    .photo:hover {
+      transform: scale(1.03) rotate(0deg);
+    }
+
+    .photo img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .photo p {
+      padding: 15px;
+      font-weight: 500;
+    }
+
+    .hidden-message {
+      margin-top: 30px;
+      display: none;
+      font-size: 1.2rem;
+      opacity: 0.9;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .question-box h2 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .yes-btn,
+    .no-btn {
+      padding: 14px 26px;
+      border: none;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .yes-btn {
+      background: white;
+      color: black;
+    }
+
+    .yes-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .no-btn {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      position: relative;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      opacity: 0.6;
+      font-size: 0.9rem;
+    }
+
+    .floating-heart {
+      position: fixed;
+      font-size: 20px;
+      pointer-events: none;
+      animation: floatUp 4s linear forwards;
+      z-index: 999;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes floatUp {
+      from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-200px) scale(1.8);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+
+      .question-box h2 {
+        font-size: 2rem;
+      }
+
+      .glass-card {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="container">
+      <div class="glass-card">
+        <h1>Хөөрхөн Ануд ✨</h1>
+        <p>
+          Сэтгэлээ илчилмээр санагдлаа. Танилцаад хэдхэн цаг болсон ч чи миний хувьд аль хэдийнээ онцгой хүн минь болчихсон шүү.
+        </p>
+
+        <a href="#story" class="btn">Нээх 💌</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="story">
+    <div class="container">
+      <div class="glass-card">
+        <h2 style="font-size: 2.8rem; margin-bottom: 15px;">Чиний тухай хэдэн зүйл</h2>
+        <p style="opacity: 0.7; max-width: 700px; margin: auto;">
+          Зарим мөчүүд энгийн байхдаа хүртэл онцгой болчихдог юм байна.
+        </p>
+
+        <div class="story-grid">
+          <div class="story-card">
+            <h3>🌙 Чиний vibe</h3>
+            <p>
+              Чамтай ярилцахаар жирийн яриа хүртэл онцгой санагддаг.
+            </p>
+          </div>
+
+          <div class="story-card">
+            <h3>🌙 Хамгийн их таалагдсан нь</h3>
+            <p>
+              Болсон бүх зүйлсээ надад ярьж өгдөг нь үнэхээр сайхан санагдсан.
+            </p>
+          </div>
+
+          <div class="story-card">
+            <h3>🌙 Бас нэг зүйл</h3>
+            <p>
+              Бид 2т сонирхол ижил маш олон зүйлс байдаг юм байналээ. Би өмнө нь надтай ийм адилхан зүйлс сонирхдог хүнтэй таарж болохоор үнэхээр бүр үнэхээр гоё санагдсан.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="glass-card">
+        <h2 style="font-size: 2.8rem;">Надад таалагдсан мөчүүд</h2>
+
+        <div class="gallery">
+          <div class="photo">
+            <img src="1.png" alt="memory">
+            <p>Шөнийн урт яриа</p>
+          </div>
+
+          <div class="photo">
+            <img src="2.png" alt="memory">
+            <p>Санамсаргүй аз жаргалтай мөчүүд</p>
+          </div>
+
+          <div class="photo">
+            <img src="3.png" alt="memory">
+            <p>Чиний авчирдаг тайван мэдрэмж</p>
+          </div>
+        </div>
+
+        <button onclick="showMessage()" class="btn" style="margin-top: 35px; border: none; cursor: pointer;">
+          Энийг битгий дараарай 👀
+        </button>
+
+        <div id="secretMessage" class="hidden-message">
+          Үнэнийг хэлэхэд... Чамтай ярилцах бүртээ би өөрийн эрхгүй инээмсэглээд байсан танилцаад хэдхэн цаг болсон ч чиний энгийн яриа хүртэл онцгой санагддаг.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="glass-card question-box">
+        <h2>Чи намайг уучлах уу? ☺️</h2>
+
+        <div class="buttons">
+          <button class="yes-btn" onclick="accepted()">Тийм 💖</button>
+          <button class="no-btn" id="noBtn">Үгүй 😶</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const buttonContainer = document.querySelector('.buttons');
+
+    function showMessage() {
+      const msg = document.getElementById('secretMessage');
+      msg.style.display = msg.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function accepted() {
+      alert('Дахиж ийм алдаа гаргахгүй ээ✨ Тэгээд бас lovvvv uu💖');
+    }
+
+    function moveNoButton() {
+      const containerRect = buttonContainer.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+      const maxX = containerRect.width - btnRect.width;
+      const maxY = containerRect.height - btnRect.height;
+      const x = Math.random() * Math.max(maxX, 0);
+      const y = Math.random() * Math.max(maxY, 0);
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    noBtn.addEventListener('mouseenter', moveNoButton);
+  </script>
+</body>
+</html>
